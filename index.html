@@ -1,113 +1,181 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <title>Расписание КПТ</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Расписание КПТ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f2f6ff;
-            margin: 0;
-            padding: 16px;
-        }
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-        .card {
-            background: white;
-            border-radius: 16px;
-            padding: 16px;
-            margin-bottom: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-        }
+    body {
+      margin: 0;
+      padding: 16px;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #1d9bf0, #0f172a);
+      color: #fff;
+    }
 
-        h1 {
-            font-size: 22px;
-            margin-bottom: 8px;
-        }
+    .app {
+      max-width: 480px;
+      margin: 0 auto;
+    }
 
-        button {
-            width: 100%;
-            padding: 14px;
-            margin-top: 8px;
-            border: none;
-            border-radius: 12px;
-            background: #2AABEE;
-            color: white;
-            font-size: 16px;
-        }
+    .header {
+      text-align: center;
+      margin-bottom: 20px;
+    }
 
-        select {
-            width: 100%;
-            padding: 12px;
-            border-radius: 12px;
-            border: 1px solid #ccc;
-            font-size: 16px;
-        }
+    .header h1 {
+      margin: 0;
+      font-size: 28px;
+    }
 
-        .lesson {
-            background: #eef6ff;
-            padding: 12px;
-            border-radius: 12px;
-            margin-top: 10px;
-        }
-    </style>
+    .header p {
+      opacity: 0.85;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(12px);
+      border-radius: 20px;
+      padding: 18px;
+      margin-bottom: 16px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+    }
+
+    label {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    select, button {
+      width: 100%;
+      padding: 14px;
+      margin-top: 8px;
+      margin-bottom: 14px;
+      border: none;
+      border-radius: 14px;
+      font-size: 16px;
+    }
+
+    select {
+      background: #fff;
+      color: #111;
+    }
+
+    button {
+      background: #22c55e;
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    button:active {
+      transform: scale(0.98);
+    }
+
+    .lesson {
+      background: rgba(255, 255, 255, 0.16);
+      padding: 14px;
+      border-radius: 16px;
+      margin-top: 12px;
+      line-height: 1.5;
+    }
+
+    .footer {
+      text-align: center;
+      font-size: 13px;
+      opacity: 0.75;
+      margin-top: 18px;
+    }
+  </style>
 </head>
+
 <body>
+  <div class="app">
+
+    <div class="header">
+      <h1>📅 Расписание КПТ</h1>
+      <p>Мини-приложение для просмотра расписания</p>
+    </div>
 
     <div class="card">
-        <h1>📅 Расписание КПТ</h1>
-        <p>Выберите группу и день недели</p>
+      <label>Выберите группу</label>
+      <select id="group">
+        <option>ИС25-1</option>
+        <option>ИС25-2</option>
+        <option>ИС25-3</option>
 
-        <select id="group">
-            <option>ИС25-1</option>
-            <option>ИС25-2</option>
-            <option>ИС25-3</option>
-        </select>
+        <option>ЛС25-1</option>
+        <option>ЛС25-2</option>
 
-        <select id="day">
-            <option>Понедельник</option>
-            <option>Вторник</option>
-            <option>Среда</option>
-            <option>Четверг</option>
-            <option>Пятница</option>
-            <option>Суббота</option>
-        </select>
+        <option>МР25-1</option>
+        <option>МР25-2</option>
 
-        <button onclick="showSchedule()">Показать расписание</button>
+        <option>МЭ25-1</option>
+        <option>МЭ25-2</option>
+        <option>МЭ25-3</option>
+
+        <option>СТ25-1</option>
+        <option>СТ25-2</option>
+
+        <option>ТД25-1</option>
+        <option>ТД25-2</option>
+        <option>ТД25-3</option>
+
+        <option>БП25</option>
+      </select>
+
+      <label>Выберите день</label>
+      <select id="day">
+        <option>Понедельник</option>
+        <option>Вторник</option>
+        <option>Среда</option>
+        <option>Четверг</option>
+        <option>Пятница</option>
+        <option>Суббота</option>
+      </select>
+
+      <button onclick="showSchedule()">Показать расписание</button>
     </div>
 
     <div class="card" id="result">
-        Здесь будет расписание
+      Выберите группу и день недели.
     </div>
 
-    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <div class="footer">
+      КПТ • Telegram Web App
+    </div>
 
-    <script>
-        const tg = window.Telegram.WebApp;
-        tg.expand();
+  </div>
 
-        function showSchedule() {
-            const group = document.getElementById("group").value;
-            const day = document.getElementById("day").value;
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
 
-            document.getElementById("result").innerHTML = `
-                <h2>${group} — ${day}</h2>
+  <script>
+    const tg = window.Telegram.WebApp;
+    tg.expand();
 
-                <div class="lesson">
-                    <b>1 пара | 8:00–9:30</b><br>
-                    📚 Здесь будет предмет<br>
-                    🚪 Кабинет
-                </div>
+    function showSchedule() {
+      const group = document.getElementById("group").value;
+      const day = document.getElementById("day").value;
 
-                <div class="lesson">
-                    <b>2 пара | 9:40–11:10</b><br>
-                    📚 Здесь будет предмет<br>
-                    🚪 Кабинет
-                </div>
-            `;
-        }
-    </script>
+      document.getElementById("result").innerHTML = `
+        <h2>👥 ${group}</h2>
+        <h3>📌 ${day}</h3>
 
+        <div class="lesson">
+          🕘 <b>1 пара | 8:00–9:30</b><br>
+          📚 Расписание отображается в Telegram-боте
+        </div>
+
+        <div class="lesson">
+          Чтобы получить актуальные данные, нажмите кнопку расписания в боте.
+        </div>
+      `;
+    }
+  </script>
 </body>
 </html>
