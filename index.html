@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Расписание КПТ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f6ff;
+            margin: 0;
+            padding: 16px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 16px;
+            padding: 16px;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        h1 {
+            font-size: 22px;
+            margin-bottom: 8px;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 8px;
+            border: none;
+            border-radius: 12px;
+            background: #2AABEE;
+            color: white;
+            font-size: 16px;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px;
+            border-radius: 12px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        .lesson {
+            background: #eef6ff;
+            padding: 12px;
+            border-radius: 12px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>📅 Расписание КПТ</h1>
+        <p>Выберите группу и день недели</p>
+
+        <select id="group">
+            <option>ИС25-1</option>
+            <option>ИС25-2</option>
+            <option>ИС25-3</option>
+        </select>
+
+        <select id="day">
+            <option>Понедельник</option>
+            <option>Вторник</option>
+            <option>Среда</option>
+            <option>Четверг</option>
+            <option>Пятница</option>
+            <option>Суббота</option>
+        </select>
+
+        <button onclick="showSchedule()">Показать расписание</button>
+    </div>
+
+    <div class="card" id="result">
+        Здесь будет расписание
+    </div>
+
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+    <script>
+        const tg = window.Telegram.WebApp;
+        tg.expand();
+
+        function showSchedule() {
+            const group = document.getElementById("group").value;
+            const day = document.getElementById("day").value;
+
+            document.getElementById("result").innerHTML = `
+                <h2>${group} — ${day}</h2>
+
+                <div class="lesson">
+                    <b>1 пара | 8:00–9:30</b><br>
+                    📚 Здесь будет предмет<br>
+                    🚪 Кабинет
+                </div>
+
+                <div class="lesson">
+                    <b>2 пара | 9:40–11:10</b><br>
+                    📚 Здесь будет предмет<br>
+                    🚪 Кабинет
+                </div>
+            `;
+        }
+    </script>
+
+</body>
+</html>
